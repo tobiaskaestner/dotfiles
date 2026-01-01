@@ -1,0 +1,65 @@
+# mostly taken from https://micahkepe.com/blog/gitconfig/
+[init]
+	defaultBranch = main
+
+[user]
+	email = tobias.kaestner@inovex.de
+	name = Tobias Kaestner
+
+[branch]
+  sort = -committerdate
+
+[tag]
+  sort = -version:refname
+
+[column]
+  ui = auto
+
+[status]
+  branch = true
+  showStash = true
+
+[advice]
+  statusHints = false
+
+[core]
+	pager = delta
+  editor = nvim
+
+[commit]
+  verbose = true
+
+[interactive]
+	diffFilter = delta --color-only
+  singleKey = true
+
+[delta]
+	navigate = true
+
+[rebase]
+  autoStash = true
+  autoSquash = true
+  missingCommitsCheck = warn
+  updateRefs = true
+
+[merge]
+	conflictStyle = zdiff3
+
+[fetch]
+  prune = true
+  pruneTags = true
+  all = true
+
+[pull]
+  rebase = true
+  default = current
+
+[push]
+  autoSetupRemote = true
+  default = current
+
+[diff]
+  algorithm = histogram
+  colorMoved = plain
+  mnemonicPrefix = true
+  renames = true
