@@ -16,6 +16,7 @@ Managed with [GNU Stow](https://www.gnu.org/software/stow/). Each top-level dire
 | mc | `~/.config/mc/` |
 | tmux | `~/.config/tmux/` |
 | yazi | `~/.config/yazi/` |
+| zsh | `~/.zshrc`, `~/.zshenv`, `~/.config/zsh/` |
 
 ## A) Apply configs on a new machine
 
@@ -61,6 +62,32 @@ If the app writes files into its config directory that you don't want tracked (p
 ```
 
 Then stow as normal — git will ignore those paths even though they live inside the repo directory via the symlink.
+
+### Packages with special structure
+
+**zsh** splits configuration across multiple files instead of a single `.zshrc`:
+
+```
+zsh/
+  dot-zshrc                        # entry point — sources conf.d/*.zsh in order
+  dot-zshenv                       # env vars for all zsh instances (e.g. cargo)
+  dot-config/zsh/conf.d/
+    01-plugins.zsh                 # oh-my-zsh setup
+    02-env.zsh                     # PATH and tool hooks (direnv etc.)
+    03-aliases.zsh                 # aliases
+    04-functions.zsh               # shell functions
+    05-keybindings.zsh             # ZLE widgets and bindkey calls
+```
+
+Add new topic-specific config by dropping a numbered `.zsh` file into `conf.d/` — it will be sourced automatically on the next shell start.
+
+`~/.zsh/completions/` is also part of this package and is added to `fpath` in `01-plugins.zsh`. Drop new completion scripts there.
+
+**Prerequisite:** oh-my-zsh must be installed separately — it is not tracked in this repo:
+
+```bash
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+```
 
 ### Notes
 
