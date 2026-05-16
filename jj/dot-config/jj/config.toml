@@ -1,0 +1,8 @@
+#:schema https://jj-vcs.github.io/jj/latest/config-schema.json
+
+[user]
+name = "Tobias Kaestner"
+email = "tobias.kaestner@inovex.de"
+
+[ui]
+editor = "vim"
