@@ -1,0 +1,15 @@
+[opener]
+edit = [
+    { run = 'nvim "$@"', block = true, desc = "Neovim" },
+]
+
+[mgr]
+ratio          = [1, 2, 3]  # panel width ratios: parent / current / preview
+sort_by        = "natural"
+sort_dir_first = true
+show_hidden    = false
+
+[preview]
+# image_protocol is auto-detected (kitty graphics protocol when inside Kitty/Ghostty)
+max_width  = 1000
+max_height = 1000

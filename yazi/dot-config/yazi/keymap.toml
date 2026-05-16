@@ -1,0 +1,17 @@
+[mgr]
+prepend_keymap = [
+    # Open file in neovim
+    { on = "e", run = "shell 'nvim \"$@\"' --block", desc = "Open in neovim" },
+    { on = "`", run = "shell '$SHELL' --block", desc = "Open shell here" },
+
+    # Copy path to clipboard
+    { on = "Y", run = "copy path", desc = "Copy path to clipboard" },
+
+    # Toggle hidden files
+    #{ on = ".", run = "toggle_hidden", desc = "Toggle hidden files" },
+
+    # Navigate to home/root quickly
+    { on = ["g", "h"], run = "cd ~",    desc = "Go to home directory" },
+    { on = ["g", "r"], run = "cd /",    desc = "Go to root directory" },
+    { on = ["g", "c"], run = "cd ~/.config", desc = "Go to ~/.config" },
+]

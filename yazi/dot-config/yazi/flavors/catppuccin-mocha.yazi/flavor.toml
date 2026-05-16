@@ -1,0 +1,87 @@
+[mgr]
+cwd            = { fg = "#89b4fa" }
+find_keyword   = { fg = "#f9e2af", italic = true }
+find_position  = { fg = "#fab387", bg = "reset", bold = true }
+symlink_target = { fg = "#94e2d5", italic = true }
+
+marker_copied   = { fg = "#a6e3a1", bg = "#a6e3a1" }
+marker_cut      = { fg = "#f38ba8", bg = "#f38ba8" }
+marker_marked   = { fg = "#94e2d5", bg = "#94e2d5" }
+marker_selected = { fg = "#f9e2af", bg = "#f9e2af" }
+
+count_copied   = { fg = "#1e1e2e", bg = "#a6e3a1" }
+count_cut      = { fg = "#1e1e2e", bg = "#f38ba8" }
+count_selected = { fg = "#1e1e2e", bg = "#f9e2af" }
+
+border_symbol = "│"
+border_style  = { fg = "#45475a" }
+
+[indicator]
+parent  = { fg = "#6c7086" }
+current = { fg = "#cdd6f4" }
+preview = { fg = "#6c7086" }
+
+[tabs]
+active   = { fg = "#1e1e2e", bg = "#89b4fa", bold = true }
+inactive = { fg = "#cdd6f4", bg = "#313244" }
+
+[mode]
+normal_main = { fg = "#1e1e2e", bg = "#89b4fa", bold = true }
+normal_alt  = { fg = "#89b4fa", bg = "#313244" }
+select_main = { fg = "#1e1e2e", bg = "#a6e3a1", bold = true }
+select_alt  = { fg = "#a6e3a1", bg = "#313244" }
+unset_main  = { fg = "#1e1e2e", bg = "#cba6f7", bold = true }
+unset_alt   = { fg = "#cba6f7", bg = "#313244" }
+
+[status]
+perm_type  = { fg = "#cba6f7" }
+perm_read  = { fg = "#f9e2af" }
+perm_write = { fg = "#f38ba8" }
+perm_exec  = { fg = "#a6e3a1" }
+perm_sep   = { fg = "#45475a" }
+
+progress_label  = { fg = "#cdd6f4", bold = true }
+progress_normal = { fg = "#89b4fa", bg = "#1e1e2e" }
+progress_error  = { fg = "#f38ba8", bg = "#1e1e2e" }
+
+[input]
+border   = { fg = "#89b4fa" }
+title    = { fg = "#cdd6f4" }
+value    = { fg = "#cdd6f4" }
+selected = { fg = "#1e1e2e", bg = "#89b4fa" }
+
+[pick]
+border   = { fg = "#89b4fa" }
+active   = { fg = "#cba6f7", bold = true }
+inactive = { fg = "#6c7086" }
+
+[cmp]
+border   = { fg = "#89b4fa" }
+active   = { fg = "#1e1e2e", bg = "#89b4fa" }
+inactive = { fg = "#6c7086" }
+
+[tasks]
+border  = { fg = "#89b4fa" }
+title   = { fg = "#cdd6f4" }
+hovered = { fg = "#cba6f7", underline = true }
+
+[which]
+cols            = 3
+mask            = { bg = "#181825" }
+cand            = { fg = "#89dceb" }
+rest            = { fg = "#6c7086" }
+desc            = { fg = "#cba6f7" }
+separator       = "  "
+separator_style = { fg = "#45475a" }
+
+[notify]
+title_info  = { fg = "#89b4fa" }
+title_warn  = { fg = "#f9e2af" }
+title_error = { fg = "#f38ba8" }
+icon_info  = ""
+icon_warn  = ""
+icon_error = ""
+
+[spot]
+border = { fg = "#89b4fa" }
+title  = { fg = "#89b4fa" }
