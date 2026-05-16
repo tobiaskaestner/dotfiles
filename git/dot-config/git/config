@@ -38,6 +38,14 @@
 
 [delta]
 	navigate = true
+	side-by-side = true
+	line-numbers = true
+	syntax-theme = Monokai Extended
+	file-style = bold yellow ul
+	file-decoration-style = none
+	hunk-header-style = file line-number syntax
+	hunk-header-decoration-style = blue box
+	hyperlinks = true
 
 [rebase]
   autoStash = true
@@ -47,6 +55,7 @@
 
 [merge]
 	conflictStyle = zdiff3
+	tool = nvimdiff-lazyvim
 
 [fetch]
   prune = true
@@ -66,6 +75,28 @@
   colorMoved = plain
   mnemonicPrefix = true
   renames = true
+  tool = difftastic
+
+[difftool]
+  prompt = false
+
+[difftool "difftastic"]
+  cmd = difft "$LOCAL" "$REMOTE"
+
+[difftool "nvimdiff-lazyvim"]
+  cmd = nvimdiff-lazyvim "$LOCAL" "$REMOTE"
+
+[mergetool]
+  prompt = false
+  keepBackup = false
+
+[mergetool "nvimdiff-lazyvim"]
+  cmd = nvimdiff-lazyvim -c "wincmd J" "$LOCAL" "$MERGED" "$REMOTE"
+
+[alias]
+  dft = difftool
+  nv = difftool --tool=nvimdiff-lazyvim
+  lg = log --graph --pretty=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %s %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --abbrev-commit
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
