@@ -1,4 +1,7 @@
-# mostly taken from https://micahkepe.com/blog/gitconfig/
+# mostly taken from 
+# https://micahkepe.com/blog/gitconfig/
+# https://blog.gitbutler.com/how-git-core-devs-configure-git
+#
 [init]
 	defaultBranch = main
 
@@ -47,7 +50,7 @@
 
 [fetch]
   prune = true
-  pruneTags = true
+  #pruneTags = true
   all = true
 
 [pull]
@@ -63,3 +66,8 @@
   colorMoved = plain
   mnemonicPrefix = true
   renames = true
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
