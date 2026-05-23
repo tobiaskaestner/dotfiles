@@ -1,6 +1,7 @@
 # dotfiles
 
-Managed with [GNU Stow](https://www.gnu.org/software/stow/). Each top-level directory is a stow package that mirrors the home directory structure, using the `dot-` prefix convention in place of a leading `.`.
+Managed with [GNU Stow](https://www.gnu.org/software/stow/). 
+Each top-level directory is a stow package that mirrors the home directory structure, using the `dot-` prefix convention in place of a leading `.`.
 
 ## Packages
 
@@ -95,3 +96,44 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 - Stow is run from `~/dotfiles` and targets `~` by default.
 - To remove symlinks: `stow --dotfiles -D <package>`
 - To check what stow would do without making changes: `stow --dotfiles --simulate <package>`
+
+Personal configuration files managed with [GNU Stow](https://www.gnu.org/software/stow/).
+
+## Packages
+
+| Package | Config for |
+|---|---|
+| `stow` | GNU Stow (`.stowrc`) |
+| `git` | Git |
+| `mc` | Midnight Commander |
+| `tmux` | tmux |
+| `yazi` | yazi file manager |
+
+## Bootstrapping a new machine
+
+### 1. Clone the repo
+
+```bash
+git clone git@github.com:tobiaskaestner/dotfiles.git ~/dotfiles
+```
+
+### 2. Stow the `stow` package first
+
+This is the only time you need to pass flags manually, since `~/.stowrc` doesn't exist yet:
+
+```bash
+cd ~/dotfiles && stow --dotfiles -t ~ stow
+```
+
+This creates `~/.stowrc`, which configures all subsequent `stow` invocations to automatically use `--dotfiles` and target `~`.
+
+### 3. Stow the remaining packages
+
+```bash
+stow git mc tmux yazi
+```
+
+## Adding a new package
+
+Follow the same structure as existing packages. Files that belong in `~/.config/<tool>/` go under `<package>/dot-config/<tool>/`. Files that belong directly in `~` are named with a `dot-` prefix (e.g. `dot-zshrc` → `~/.zshrc`).
+>>>>>>> 820071f (docs: add chapters on using stow and bootstrapping a new machine)
