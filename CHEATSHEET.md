@@ -58,6 +58,7 @@
 | Alias | Action |
 |-------|--------|
 | `zshconfig` | Open `~/.config/zsh` in nvim |
+| `reload` | Re-source `~/.zshrc` and confirm |
 
 ### Custom Functions
 

@@ -29,6 +29,7 @@ alias gadog='PAGER="less -F -X" git log --all --decorate --oneline --graph'
 
 # config shortcuts
 alias zshconfig='nvim ~/.config/zsh'
+alias reload='source ~/.zshrc && echo "ZSH config reloaded"'
 
 # neovim profiles
 alias lzv='NVIM_APPNAME=nvim-lazyvim nvim'
