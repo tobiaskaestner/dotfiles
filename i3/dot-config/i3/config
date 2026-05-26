@@ -27,7 +27,7 @@ gaps outer 4
 # APPLICATIONS
 # =============================================================================
 
-set $term alacritty
+set $term kitty
 
 bindsym $mod+Return exec $term
 bindsym $mod+d      exec --no-startup-id dmenu_run
