@@ -1,4 +1,5 @@
 export PATH="$HOME/.local/bin:$PATH"
+[[ -d "$HOME/.cargo/bin" ]] && export PATH="$HOME/.cargo/bin:$PATH"
 
 eval "$(direnv hook zsh)"
 eval "$(zoxide init zsh)"
