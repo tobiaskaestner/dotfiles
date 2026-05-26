@@ -36,6 +36,8 @@
 | `top` | `btop` | Interactive system monitor |
 | `vim` | `nvim` | Muscle memory fallback |
 | `-` | `cd -` | Jump to previous directory |
+| `cd <query>` | `z <query>` | Zoxide frecency jump |
+| `cdi` | `zi` | Zoxide interactive directory picker (fzf) |
 
 ### Aliases — Git
 
