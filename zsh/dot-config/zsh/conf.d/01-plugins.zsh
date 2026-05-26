@@ -1,7 +1,6 @@
-fpath=(~/.zsh/completions $fpath)
+fpath=(~/.zsh/completions ~/.config/zsh/plugins/zsh-completions/src $fpath)
 
-export ZSH="$HOME/.oh-my-zsh"
-ZSH_THEME="robbyrussell"
-plugins=(git)
+source ~/.config/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/.config/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-source $ZSH/oh-my-zsh.sh
+autoload -Uz compinit && compinit

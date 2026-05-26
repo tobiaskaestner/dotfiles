@@ -35,12 +35,3 @@ wbs() {
   echo "Constructed: $cmd"
   print -z "$cmd"
 }
-
-fzf-history-widget() {
-  local selected_command
-  selected_command=$(fc -rnl 1 | fzf --height 40% --reverse --query="$LBUFFER" --prompt="History > ")
-  if [[ -n "$selected_command" ]]; then
-    LBUFFER="$selected_command"
-  fi
-  zle reset-prompt
-}
