@@ -19,3 +19,9 @@
 [submodule "zsh/dot-config/zsh/plugins/zsh-history-substring-search"]
 	path = zsh/dot-config/zsh/plugins/zsh-history-substring-search
 	url = https://github.com/zsh-users/zsh-history-substring-search
+[submodule "tmux/dot-config/tmux/plugins/tmux-resurrect"]
+	path = tmux/dot-config/tmux/plugins/tmux-resurrect
+	url = https://github.com/tmux-plugins/tmux-resurrect
+[submodule "tmux/dot-config/tmux/plugins/tmux-continuum"]
+	path = tmux/dot-config/tmux/plugins/tmux-continuum
+	url = https://github.com/tmux-plugins/tmux-continuum
