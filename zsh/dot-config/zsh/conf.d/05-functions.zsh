@@ -7,6 +7,35 @@ _fzf_file_no_hidden() {
 }
 zle -N _fzf_file_no_hidden
 
+theme() {
+  local flavor="${1:-toggle}"
+  local current
+  current=$(cat "$HOME/.config/current-theme" 2>/dev/null || echo "mocha")
+
+  [[ "$flavor" == "toggle" ]] && flavor=$([[ "$current" == "mocha" ]] && echo "latte" || echo "mocha")
+
+  case "$flavor" in
+    mocha|dark)  flavor="mocha" ;;
+    latte|light) flavor="latte" ;;
+    *)
+      print "Usage: theme [mocha|dark|latte|light|toggle]  (current: $current)"
+      return 1
+      ;;
+  esac
+
+  echo "$flavor" > "$HOME/.config/current-theme"
+
+  # tmux
+  printf 'set -gq @catppuccin_flavor "%s"\n' "$flavor" > "$HOME/.config/tmux/theme.conf"
+  [[ -n "$TMUX" ]] && tmux source "$HOME/.config/tmux/tmux.conf"
+
+  # kitty — copy pre-extracted theme file and reload via SIGUSR1
+  cp "$HOME/.config/kitty/catppuccin-${flavor}.conf" "$HOME/.config/kitty/current-theme.conf"
+  pkill -USR1 kitty 2>/dev/null
+
+  print "Switched to $flavor"
+}
+
 wbs() {
   local zephyr_base=$(west topdir 2>/dev/null)/zephyr
   if [[ ! -d "$zephyr_base" ]]; then
