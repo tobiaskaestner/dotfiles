@@ -1,12 +1,11 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 # Blank line before each prompt for breathing room between commands.
-add_newline      = true
-scan_timeout     = 3000
-command_timeout  = 2000
+add_newline  = true
+scan_timeout = 3000
 
 format = """
-$os$username$hostname$directory${custom.jj}$rust$golang$python$nodejs$cmd_duration
+$os$username$hostname$directory$git_branch$git_commit$git_status$rust$golang$python$nodejs$cmd_duration
 $character"""
 
 # =============================================================================
@@ -44,21 +43,20 @@ truncation_length = 4
 truncate_to_repo  = true
 
 # =============================================================================
-# VCS — jj-starship handles both jj and git repos in one module.
-# Install: cargo install jj-starship
-# Replaces the native git_branch and git_status modules.
+# VCS — native git integration
 # =============================================================================
 
 [git_branch]
-disabled = true
+symbol = " "
+format = "[$symbol$branch(:$remote_branch)](bold purple) "
+
+[git_commit]
+format             = "[\\($hash\\)](green) "
+commit_hash_length = 7
+only_detached      = false
 
 [git_status]
-disabled = true
-
-[custom.jj]
-when   = "jj-starship detect"
-shell  = ["jj-starship"]
-format = "$output "
+format = "([$all_status$ahead_behind]($style) )"
 
 # =============================================================================
 # LANGUAGES
