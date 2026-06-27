@@ -64,6 +64,16 @@
 
 ### Custom Functions
 
+#### `theme [mocha|dark|latte|light|toggle]` — Catppuccin theme switcher
+Switches the colour scheme across tmux and kitty simultaneously. Persists the choice to `~/.config/current-theme`.
+- `toggle` (default) — flips between `mocha` (dark) and `latte` (light)
+
+#### `vcsmode [git|jj|toggle]` — Starship VCS mode switcher
+Toggles the starship prompt between native git integration and jj-starship. Persists the choice to `~/.config/current-starship`.
+- `git` (default) — native `git_branch` / `git_status` / `git_commit` modules, fast
+- `jj` — `jj-starship` custom module, handles both jj and git repos
+- `toggle` (default) — flips between the two
+
 #### `wbs` — Zephyr west build selector
 Interactive fzf-powered selector for Zephyr builds. Run inside a west workspace.
 1. Select a board from the full board/qualifier list
