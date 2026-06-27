@@ -25,15 +25,38 @@ theme() {
 
   echo "$flavor" > "$HOME/.config/current-theme"
 
-  # tmux
+  # tmux — set reset flag first so catppuccin clears old @thm_* vars before reloading
   printf 'set -gq @catppuccin_flavor "%s"\n' "$flavor" > "$HOME/.config/tmux/theme.conf"
-  [[ -n "$TMUX" ]] && tmux source "$HOME/.config/tmux/tmux.conf"
+  if [[ -n "$TMUX" ]]; then
+    tmux set -gq @catppuccin_reset "true"
+    tmux source "$HOME/.config/tmux/tmux.conf"
+  fi
 
   # kitty — copy pre-extracted theme file and reload via SIGUSR1
   cp "$HOME/.config/kitty/catppuccin-${flavor}.conf" "$HOME/.config/kitty/current-theme.conf"
   pkill -USR1 kitty 2>/dev/null
 
   print "Switched to $flavor"
+}
+
+vcsmode() {
+  local mode="${1:-toggle}"
+  local current
+  current=$(cat "$HOME/.config/current-starship" 2>/dev/null || echo "git")
+
+  [[ "$mode" == "toggle" ]] && mode=$([[ "$current" == "git" ]] && echo "jj" || echo "git")
+
+  case "$mode" in
+    git|jj) ;;
+    *)
+      print "Usage: vcsmode [git|jj|toggle]  (current: $current)"
+      return 1
+      ;;
+  esac
+
+  echo "$mode" > "$HOME/.config/current-starship"
+  export STARSHIP_CONFIG="$HOME/dotfiles/starship/dot-config/starship-${mode}.toml"
+  print "Switched to $mode mode"
 }
 
 wbs() {
@@ -72,4 +95,12 @@ wbs() {
   local cmd="west build -p auto -b $selected_board $zephyr_base/$sample_path"
   echo "Constructed: $cmd"
   print -z "$cmd"
+}
+
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	command yazi "$@" --cwd-file="$tmp"
+	IFS= read -r -d '' cwd < "$tmp"
+	[ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd"
+	command rm -f -- "$tmp"
 }

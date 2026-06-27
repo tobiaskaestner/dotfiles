@@ -4,6 +4,9 @@ export PATH="$HOME/.local/bin:$PATH"
 eval "$(direnv hook zsh)"
 eval "$(zoxide init zsh --cmd cd)"
 eval "$(fzf --zsh)"
+_sm=$(cat "$HOME/.config/current-starship" 2>/dev/null || echo "git")
+export STARSHIP_CONFIG="$HOME/dotfiles/starship/dot-config/starship-${_sm}.toml"
+unset _sm
 eval "$(starship init zsh)"
 
 # fzf

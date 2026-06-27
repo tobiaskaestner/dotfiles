@@ -35,3 +35,8 @@ alias reload='source ~/.zshrc && echo "ZSH config reloaded"'
 alias lzv='NVIM_APPNAME=nvim-lazyvim nvim'
 alias asv='NVIM_APPNAME=nvim-astro nvim'
 alias ksv='NVIM_APPNAME=nvim-kickstart nvim'
+
+# zephyr development
+alias cdw='cd $(west topdir)'
+alias cdz='cd $(west topdir)/zephyr'
+alias cdm='cd $(west topdir) && cd $(west config manifest.path)'
