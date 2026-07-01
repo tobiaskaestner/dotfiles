@@ -1,0 +1,21 @@
+#!/bin/sh
+# Helper: run the CURRENT repo's own hook of the given type, if it exists.
+#
+# A global core.hooksPath (set in ~/.config/git/config) makes every repo use
+# this directory instead of its own .git/hooks, which would otherwise silently
+# disable per-repo hooks (git-LFS, pre-commit, project scripts, ...). Each hook
+# here calls this helper so those local hooks keep running.
+#
+# Note: repos that set their OWN core.hooksPath (e.g. husky) override the global
+# one entirely and never reach this dir, so they are unaffected.
+
+name="$1"
+shift
+
+git_dir="$(git rev-parse --git-dir 2>/dev/null)" || exit 0
+local_hook="$git_dir/hooks/$name"
+
+if [ -x "$local_hook" ]; then
+  exec "$local_hook" "$@"
+fi
+exit 0

@@ -1,0 +1,19 @@
+#!/bin/sh
+# Global prepare-commit-msg hook (wired via core.hooksPath in ~/.config/git/config).
+#
+# Appends a `Signed-off-by:` trailer to every commit message, idempotently, then
+# hands off to a repo-local prepare-commit-msg hook if one exists (see _chain).
+
+set -eu
+
+msg_file="$1"
+
+# Build "Signed-off-by: Name <email>" from the committer identity, exactly like
+# `git commit -s` does. interpret-trailers places it in the trailer block and
+# skips comment/scissor lines, so it works for editor, -m, amend and lazygit.
+sob="$(git var GIT_COMMITTER_IDENT | sed -n 's/^\(.*>\).*$/Signed-off-by: \1/p')"
+if [ -n "$sob" ] && ! grep -qsF -- "$sob" "$msg_file"; then
+  git interpret-trailers --in-place --trailer "$sob" "$msg_file"
+fi
+
+exec "$(dirname "$0")/_chain" prepare-commit-msg "$@"

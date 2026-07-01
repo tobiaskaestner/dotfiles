@@ -28,6 +28,7 @@
 [core]
 	pager = delta
   editor = nvim
+	hooksPath = ~/.config/git/hooks
 
 [commit]
   verbose = true
