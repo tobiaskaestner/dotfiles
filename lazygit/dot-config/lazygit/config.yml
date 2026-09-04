@@ -1,13 +1,18 @@
 gui:
   nerdFontsVersion: "3"
+  theme:
+    selectedLineBgColor:
+      - reverse
+    selectedRangeBgColor:
+      - reverse
 keybinding:
   commits:
     moveUpCommit: 'K'
     moveDownCommit: 'J'
 git:
-  pagers:
+  diffRenderers:
     - colorArg: always
-      pager: delta --paging=never --side-by-side --line-numbers
+      command: delta --paging=never --side-by-side --line-numbers
       useConfig: false
 customCommands:
   - key: 'E'
