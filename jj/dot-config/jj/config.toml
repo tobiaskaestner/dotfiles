@@ -6,3 +6,9 @@ email = "tobias.kaestner@inovex.de"
 
 [ui]
 editor = "vim"
+
+[aliases]
+prs = ["log","-r","ancestors(trunk(), 20) & merges()","-n","6"]
+
+[revset-aliases]
+'landed(n)' = "ancestors(trunk(), n) & merges()"
