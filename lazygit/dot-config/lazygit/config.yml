@@ -14,6 +14,7 @@ git:
     - colorArg: always
       command: delta --paging=never --side-by-side --line-numbers
       useConfig: false
+  overrideGpg: true
 customCommands:
   - key: 'E'
     description: 'Add empty commit'
