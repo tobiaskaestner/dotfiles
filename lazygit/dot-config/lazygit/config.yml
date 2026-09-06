@@ -15,7 +15,19 @@ git:
       command: delta --paging=never --side-by-side --line-numbers
       useConfig: false
   overrideGpg: true
+  # %G? = signature status (G good / U untrusted / E no key / N unsigned)
+  branchLogCmd: >-
+    git log --graph --color=always --abbrev-commit --decorate --date=relative --pretty='format:%C(auto)%h %C(magenta)%G?%C(auto)%d %s %C(dim white)- %an' {{branchName}} --
+  allBranchesLogCmds:
+    - >-
+      git log --graph --all --color=always --abbrev-commit --decorate --date=relative --pretty='format:%C(auto)%h %C(magenta)%G?%C(auto)%d %s %C(dim white)- %an'
 customCommands:
+  - key: '<c-g>'
+    description: 'Verify GPG signature'
+    context: 'commits'
+    command: 'git verify-commit {{.SelectedLocalCommit.Hash}}'
+    outputTitle: 'GPG signature'
+    output: popup
   - key: 'E'
     description: 'Add empty commit'
     context: 'commits'
