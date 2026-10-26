@@ -4,4 +4,9 @@
 # silently drop it. Previously this was in 03-env.zsh, ahead of
 # 04-aliases/05-functions/06-keybindings/09-syntax-highlighting, which is what
 # the "zoxide: detected a possible configuration issue" warning was about.
-eval "$(zoxide init zsh --cmd cd)"
+#
+# Skipped under Claude Code (CLAUDECODE=1): its shell snapshot captures the
+# zoxide functions but not the chpwd_functions array, so every `cd` in the
+# agent's shell tripped __zoxide_doctor. Agents don't need frecency jumps
+# (and shouldn't pollute the zoxide db), so plain builtin cd is fine there.
+[[ -n $CLAUDECODE ]] || eval "$(zoxide init zsh --cmd cd)"

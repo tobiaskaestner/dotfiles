@@ -15,3 +15,6 @@ bindkey '^\' autosuggest-toggle
 # history substring search (type partial command, then use ↑/↓)
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
+
+# Y (vi normal mode) — yank whole line to system clipboard
+bindkey -M vicmd 'Y' copy-line-to-clipboard

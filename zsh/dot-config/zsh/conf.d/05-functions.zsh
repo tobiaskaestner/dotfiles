@@ -104,3 +104,15 @@ function y() {
 	[ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd"
 	command rm -f -- "$tmp"
 }
+
+# copy the whole command line to the system clipboard and the zsh kill ring
+copy-line-to-clipboard() {
+  if [[ -n "$WAYLAND_DISPLAY" ]] && (( $+commands[wl-copy] )); then
+    print -rn -- "$BUFFER" | wl-copy
+  elif (( $+commands[xsel] )); then
+    print -rn -- "$BUFFER" | xsel -ib
+  fi
+  zle copy-region-as-kill -- "$BUFFER"   # also into the zle kill ring
+  zle -M "yanked line to clipboard"
+}
+zle -N copy-line-to-clipboard
